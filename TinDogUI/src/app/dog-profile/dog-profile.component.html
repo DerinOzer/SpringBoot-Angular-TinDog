@@ -1,0 +1,112 @@
+<!--<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<h2 style="text-align:center">Pet Card</h2>
+
+<div class="card" ><a href="#">
+  <img src="/assets/img/puppy_1.jpg" alt="John" style="width:100%">
+  <h1>John Doe</h1>
+  <p class="title">CEO & Founder, Example</p>
+  <p>Harvard University</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <a href="#"><i class="fa fa-facebook"></i></a>
+  </div>
+  <p><button>Contact</button></p>
+</a>
+</div>
+</body>
+</html>-->
+<html>
+<head>
+
+</head>
+<body>
+
+
+
+<div class="flex-container" style="overflow-x: auto;" id ="profiles">
+
+
+
+
+  <i *ngIf="list.length>1" style="margin-top:15%" >
+    <button class="fas fa-angle-left" style="width: 30px; background-color: white; border: white; color: black; font-size: 48px;" (click)="swipeLeft()"></button>
+  </i>
+  <div *ngIf="list.length>0">
+  <i>
+
+  <div class="card" style="border-radius:10px"  >
+    <img src={{list[i][3]}}  style="width:100% ;border-radius:10px ;height:260px;max-height: 265px;" >
+    <h1>{{list[i][0]}}</h1>
+    <p class="title">{{list[i][1]}}</p>
+    <p>{{list[i][2]}}</p>
+
+    <p><a href="createProfileDog"><button  >Modifier</button></a></p>
+</div>
+</i>
+</div>
+
+<i *ngIf="list.length>1" style="margin-top:15%">
+  <button class="fas fa-angle-right" style="  width: 30px; background-color: white; border: white; color: black; font-size: 48px;" (click)="swipeRight()"></button>
+</i>
+</div>
+
+</body>
+</html>
+
+<!--<div style="overflow-x: auto;">
+    <div class="card" ><a href="#">
+      <img src="/assets/img/puppy_1.jpg" alt="John" style="width:100%">
+      <h1>Ouzy</h1>
+      <p class="title">Angers</p>
+      <p>je suis pas encore là </p>
+      <div style="margin: 24px 0;">
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </div>
+      <p><button>Modifier</button></p>
+    </a>
+  </div>
+  </div>
+  <div>
+    <div class="card"  ><a href="#">
+       <i class='fas fa-angle-left' style='font-size:48px;color:red'></i>
+      <img src="/assets/img/puppy_1.jpg" alt="John" style="width:100%">
+      <h1>Lizy</h1>
+      <p class="title">Angers</p>
+      <p>je dors tout le temps </p>
+      <div style="margin: 24px 0;">
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </div>
+      <p><button>Modifier</button></p>
+    </a>
+    </div>
+  </div>
+
+  <div>
+    <div class="card"  ><a href="#">
+      <img src="/assets/img/puppy_1.jpg" alt="John" style="width:100%">
+      <h1>Pepite</h1>
+      <p class="title">Angers</p>
+      <p>Je mange des coussins </p>
+      <div style="margin: 24px 0;">
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+
+      </div>
+      <p><button>Modifier</button></p>
+    </a>
+    </div>
+  </div>
+-->

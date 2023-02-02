@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Responsive Registration Form</title>
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0"/>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="form-title">Create Owner Profile</h1>
+      <form action="#">
+        <div>
+        <div class="user-input-box" >
+          <img [src]="url" height="200" width="250"><br>
+
+        </div>
+        <div class="main-user-info">
+          <div class="user-input-box" class="image-upload">
+
+            <label for="file-input">
+              <i class="fas fa-camera" style="font-size:40px;color:white;"></i>
+              <label for="fullName" style="color: dimgray;"><p>Appload your profile picture</p> </label>
+            </label>
+            <input id="file-input" type="file" (change)="onselectFile($event)" class="fas fa-camera" />
+          </div>
+        </div>
+      </div>
+        <div class="main-user-info">
+          <div class="user-input-box">
+            <label for="fullName"> Name</label>
+            <input type="text"
+                    id="fullName"
+                    name="fullName"
+                    [(ngModel)]="name"
+                    placeholder="Enter Full Name"/>
+          </div>
+          <div class="user-input-box">
+            <label for="username">Last Name</label>
+            <input type="text"
+                    id="username"
+                    name="username"
+                    [(ngModel)]="lastname"
+                    placeholder="Enter Username"/>
+          </div>
+          <div class="user-input-box">
+            <label for="date">Date of Birth</label>
+            <input type="text"
+                    id="date"
+                    name="date"
+                    [(ngModel)]="date"
+                    placeholder="Enter date of birth"
+                    type="date"/>
+          </div>
+          <div class="user-input-box">
+            <label for="profession">Profession</label>
+            <input type="text"
+                    id="profession"
+                    name="profession"
+                    [(ngModel)]="profession"
+                    placeholder="Enter profession"
+                    type="text"/>
+          </div>
+          <div class="user-input-box">
+            <label for="bio">Bio</label>
+            <input type="text"
+                    id="bio"
+                    name="bio"
+                    [(ngModel)]="bio"
+                    placeholder="write your bio"
+                    type="text"/>
+          </div>
+
+      </div>
+        <div class="gender-details-box">
+          <span class="gender-title">Gender</span>
+          <div class="gender-category"  >
+
+            <input type="radio" name="gender" id="male" value="male" (change)="radioChangeHandler($event)" >
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" value="female" (change)="radioChangeHandler($event)">
+            <label for="female">Female</label>
+            <input type="radio" name="gender"  id="other" value="other"  (change)="radioChangeHandler($event)">
+            <label for="other">Other</label>
+          </div>
+        </div>
+
+        <div class="form-submit-btn">
+          <input type="submit" value="Register" (click)="createProfile()">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,145 @@
+
+
+<div class="flex-container " >
+<!--Zone de messagerie-->
+  <div style="flex-grow: 2" style="width: 500px; background-color: rgb(3, 3, 3);border-radius: 15px;">
+
+
+   <div class="flex-container-column">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+
+</head>
+
+
+
+
+<body>
+
+  <div class="chat-global" style="height: 100%;" >
+
+      <div class="nav-top">
+
+          <div class="utilisateur">
+              <p>Pepite</p>
+              <p>Active Now</p>
+              <!--<img src="assets/img/dog.jpg">-->
+          </div>
+
+
+      </div>
+
+      <div class="conversation" class="box1" style="overflow:scroll;" >
+          <div class="talk left">
+              <!--<img src="assets/img/dog.jpg">-->
+              <p></p>
+          </div>
+          <div class="talk left">
+            <!--<img src="assets/img/dog.jpg">-->
+            <p>Salut Pepite!</p>
+        </div>
+          <div class="talk right">
+              <p>Hello Lizy    .</p>
+              <!--<img src="assets/img/dog.jpg">-->
+          </div>
+          <div class="talk left">
+              <!--<img src="assets/img/dog.jpg">-->
+              <p>tu habites où à Angers? .</p>
+          </div>
+          <div class="talk right">
+              <p>Au cnetre ville :p.</p>
+           <!--<img src="assets/img/dog.jpg">-->
+          </div>
+
+          <div class="talk left">
+            <!--<img src="assets/img/dog.jpg">-->
+            <p>Ok bonne journée :)</p>
+        </div>
+        <div class="talk right" id="mymsg">
+
+        </div>
+      </div>
+
+      <form class="chat-form">
+
+          <div class="container-inputs-stuffs">
+
+              <div class="files-logo-cont">
+                  <img src="assets/img/paperclip.svg">
+              </div>
+
+              <div class="group-inp">
+                <textarea type="textarea"
+                    id="mesg"
+                    name="mesg"
+                    placeholder="Enter your dog's description"
+                    cols="29"
+                    [(ngModel)]="mesg"
+                    style="border: 20px"
+                    ></textarea>
+                 <!--<textarea placeholder="Enter your message here" minlength="1" maxlength="1500" value="message" id="message" [(ngModel)]="mesg"></textarea>-->
+                  <img src="assets/img/smile.svg">
+              </div>
+
+
+              <button class="submit-msg-btn" (click)="send()">
+                  <img src="assets/img/send.svg">
+              </button>
+          </div>
+
+      </form>
+  </div>
+
+
+  </body>
+
+
+  </div>
+  </div>
+
+
+
+
+
+<!--Zone de swipe-->
+  <div style="flex-grow: 10;background-color: rgba(230, 217, 201, 0.404);  border-radius: 15px;" >
+    <div><div >
+     <!--<img src="assets\img\puppy_1.jpg" alt="Nature" class="center" />-->
+
+     <div >
+      <div class="card" style="width: 500px" >
+        <img src={{path}} style="width:100%">
+        <h1>{{name}}</h1>
+          <h3 class="title">{{date}}</h3>
+          <h3>{{bio}} </h3>
+            <div class="div1">
+              <div class="btn-group">
+              <button (click)="swipeYES()">
+                <i class="fa fa-check-circle" style="font-size:48px;color:rgb(23, 192, 7); padding:30px;"></i>
+              </button>
+
+              <button (click)="swipeNO()">
+                <i class="fa fa-times-circle" style="font-size:48px;color:red"></i>
+              </button>
+
+
+              </div>
+              </div>
+
+      </div>
+    </div>
+    <div>
+  </div>
+</div>
+<div></div>
+
+  </div>
+</div>
+
+
+
