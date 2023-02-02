@@ -9,47 +9,52 @@ import java.util.UUID;
 @Table
 public class DogMatch {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)")
-    private UUID Id;
+    private UUID id;
 
-    private UUID JudgingId;
+    private String judgingId;
 
-    private UUID JudgedId;
-    private Boolean Liked;
+    private String judgedId;
+    private Boolean liked;
 
     public DogMatch() { }
 
+    public DogMatch(String judgingId, String judgedId, Boolean liked) {
+        this.id = UUID.randomUUID();
+        this.judgingId = judgingId;
+        this.judgedId = judgedId;
+        this.liked = liked;
+    }
+
     public UUID getId() {
-        return Id;
+        return id;
     }
 
     public void setId(UUID id) {
-        Id = id;
+        this.id = id;
     }
 
-    public UUID getJudgingId() {
-        return JudgingId;
+    public String getJudgingId() {
+        return judgingId;
     }
 
-    public void setJudgingId(UUID judgingId) {
-        JudgingId = judgingId;
+    public void setJudgingId(String judgingId) {
+        this.judgingId = judgingId;
     }
 
-    public UUID getJudgedId() {
-        return JudgedId;
+    public String getJudgedId() {
+        return judgedId;
     }
 
-    public void setJudgedId(UUID judgedId) {
-        JudgedId = judgedId;
+    public void setJudgedId(String judgedId) {
+        this.judgedId = judgedId;
     }
 
     public Boolean getLiked() {
-        return Liked;
+        return liked;
     }
 
     public void setLiked(Boolean liked) {
-        Liked = liked;
+        this.liked = liked;
     }
 }
