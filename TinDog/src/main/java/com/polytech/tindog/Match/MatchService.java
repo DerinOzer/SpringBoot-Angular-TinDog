@@ -21,7 +21,7 @@ public class MatchService {
     public void createMatch(String judgingId, String judgedId, Boolean liked) throws Exception {
         if(ownerService.ownerExists(UUID.fromString(judgingId)) && ownerService.ownerExists(UUID.fromString(judgedId))){
             if(matchRepository.existsByJudgingIdAndJudgedId(judgingId,judgedId)){
-                throw new Exception("This user have already evaluated each other the other user.");
+                throw new Exception("This user has already evaluated the other user.");
 
             }else{
                 DogMatch dogMatch = new DogMatch(judgingId, judgedId, liked);

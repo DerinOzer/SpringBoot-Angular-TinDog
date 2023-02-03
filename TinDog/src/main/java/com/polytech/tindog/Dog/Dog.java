@@ -1,7 +1,6 @@
 package com.polytech.tindog.Dog;
 import com.polytech.tindog.Message.Message;
 import com.polytech.tindog.Owner.Owner;
-import com.polytech.tindog.Recipient.Recipient;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,11 +25,6 @@ public class Dog {
     private byte[] picture;
 
     private String ownerId;
-    /*@OneToMany(mappedBy = "Dog")
-    private Set<Message> messages;
-
-    @OneToOne(mappedBy = "Dog")
-    private com.polytech.tindog.Recipient.Recipient recipient;*/
 
     public Dog() {}
 

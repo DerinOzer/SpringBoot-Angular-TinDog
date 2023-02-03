@@ -1,6 +1,8 @@
 package com.polytech.tindog.Dog;
 import com.polytech.tindog.Owner.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +25,16 @@ public class DogController {
     @GetMapping("/dogs-of-owner")
     public Dog[] getDogsByOwner(@RequestParam String ownerId){
         return dogService.findDogsByOwnerId(ownerId);
+    }
+
+    @GetMapping(value = "/dog-image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public Resource getImage(@RequestParam UUID id) throws Exception {
+        return dogService.getImage(id);
+    }
+
+    @GetMapping("/dog")
+    public Dog getDogById(@RequestParam UUID id) throws Exception {
+        return dogService.getDogById(id);
     }
 
 }
