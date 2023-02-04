@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { stringify } from 'uuid';
+import { Dog } from '../dog';
+import { DogService } from '../dog.service';
+import { MatchService } from '../match.service';
 
 @Component({
   selector: 'app-messagerie',
@@ -18,85 +21,110 @@ export class MessagerieComponent implements OnInit {
   souslist: string[][]=[];
   dog=[];
   k!:any;
-  list: string[][]=[];
+  
   mesg!:string;
+
+  dogImage:any;
+  currentDog!:Dog;
+  dogList!:any;
+  dogsCollected:boolean = false;
+  imageCollected:boolean = false;
+  noMoreDogsToShow:boolean = false;
+
 
 
   //list=[["lizy","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"],["ouzy","12-06-2019","Je suis miniscule","assets/img/dog.jpg"] ,["pepite","12-06-2019","Je suis miniscule","assets/img/doggy.jpg"]];
-  constructor() { }
+  constructor(private dogService:DogService, private matchService:MatchService) { }
 
   ngOnInit(): void {
+    this.dogsCollected = false;
 
-    this.list=[["lizy","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"],["ouzy","12-06-2019","Je suis miniscule","assets/img/dog.jpg"] ,["pepite","12-06-2019","Je suis miniscule","assets/img/doggy.jpg"],["sirine","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"]];
+    /*this.list=[["lizy","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"],["ouzy","12-06-2019","Je suis miniscule","assets/img/dog.jpg"] ,["pepite","12-06-2019","Je suis miniscule","assets/img/doggy.jpg"],["sirine","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"]];
     this.name=this.list[0][0];
       //console.log(typeof this.list[0].at(0));
       this.date=this.list[0][1];
       this.bio=this.list[0][2];
-      this.path=this.list[0][3];
+      this.path=this.list[0][3];*/
 
+      console.log(sessionStorage.getItem('id'));
+      this.dogService.GetDogsToShowToOwner(sessionStorage.getItem('id') as string).subscribe(response =>{
+        if(response.length == 0){
+          this.noMoreDogsToShow = true;
+        }
+        else{
+          this.dogService.GetDogPicture(response[this.i].id).subscribe(image =>{
+            this.createImageFromBlob(image);
+            this.dogList = response;
+            this.dogsCollected = true;
+            this.imageCollected = true;
+            this.currentDog = this.dogList[this.i]
+            console.log(this.dogList);
+          }, error =>{
+            console.log("Error occured",error);
+          });
+        }
+      });  
+  }
 
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.dogImage = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
   }
 
   swipeYES()
   {
-    if(this.i>=this.list.length)
-     {
-       this.i=0;
-     }
-    console.log(this.i)
+    this.imageCollected = false;
+    this.dogService.GetOwnerIdByDogId(this.currentDog.id).subscribe(ownerId =>{
+      this.matchService.CreateMatch(sessionStorage.getItem('id') as string, ownerId, true).subscribe(() => {
+        this.i = this.i + 1;
 
-    if (this.i<this.list.length)
-    {
-     this.i++;
-     if(this.i>=this.list.length)
-     {
-       this.i=0;
-     }
-
-
-      this.name=this.list[this.i][0];
-      //console.log(typeof this.list[0].at(0));
-      this.date=this.list[this.i][1];
-      this.bio=this.list[this.i][2];
-      this.path=this.list[this.i][3];
-    //  this.i++;
-
-    }
-
-
+        if(typeof this.dogList[this.i] === 'undefined'){
+          this.noMoreDogsToShow = true;
+          this.dogsCollected = false;
+        }
+        else{
+          this.currentDog = this.dogList[this.i];
+          this.dogService.GetDogPicture(this.currentDog.id).subscribe(image =>{
+            console.log("test");
+            this.createImageFromBlob(image);
+            this.imageCollected = true;
+          });
+        }
+      });
+    });
   }
+
+
   swipeNO()
   {
-    if (this.i==0)
-    {
-      this.list.splice(0,1);
-      console.log("liste à jour",this.list);
-      this.name=this.list[this.i][0];
-      //console.log(typeof this.list[0].at(0));
-      this.date=this.list[this.i][1];
-      this.bio=this.list[this.i][2];
-      this.path=this.list[this.i][3];
-    }
-    else
-    {
-      console.log('test',this.i)
-      this.list.splice(this.i,1);
+    this.imageCollected = false;
+    this.dogService.GetOwnerIdByDogId(this.currentDog.id).subscribe(ownerId =>{
+      this.matchService.CreateMatch(sessionStorage.getItem('id') as string, ownerId, true).subscribe(() => {
+        this.i = this.i + 1;
 
-      //console.log('swipeno',this.i)
-      if(this.i>=this.list.length)
-      {
-        this.i=0;
-      }
-      console.log('swipeno',this.i)
-      console.log("liste à jour",this.list);
-      this.name=this.list[this.i][0];
-      //console.log(typeof this.list[0].at(0));
-      this.date=this.list[this.i][1];
-      this.bio=this.list[this.i][2];
-      this.path=this.list[this.i][3];
-    }
-
+        if(typeof this.dogList[this.i] === 'undefined'){
+          this.noMoreDogsToShow = true;
+          this.dogsCollected = false;
+        }
+        else{
+          this.currentDog = this.dogList[this.i];
+          this.dogService.GetDogPicture(this.currentDog.id).subscribe(image =>{
+            console.log("test");
+            this.createImageFromBlob(image);
+            this.imageCollected = false;
+          });
+        }
+      });
+    });
   }
+
+  
 send()
 {
   let mydiv=document.getElementById("mymsg");

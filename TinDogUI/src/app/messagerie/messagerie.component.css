@@ -6,6 +6,13 @@
   font-size: 3000px;
 }
 
+#zone-swipe{
+  flex-grow: 10;
+  background-color: rgba(230, 217, 201, 0.404);  
+  border-radius: 15px;
+  height: calc(100vh - 80px);
+}
+
 .flex-container > div {
   background-color: rgb(255, 255, 255);
   color: white;
@@ -364,7 +371,7 @@
 
     text-align: center;
     font-family: arial;
-    background-color: rgb(245, 232, 232);
+    background-color: rgb(241, 209, 209);
   }
 
   .title {

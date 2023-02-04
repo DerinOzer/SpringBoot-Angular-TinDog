@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Dog } from './dog';
 import { Owner } from './owner';
 
 
@@ -36,6 +37,20 @@ export class OwnerService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("id",id);
     return this.httpClient.get("http://localhost:8080/owner-image", {params:queryParams, responseType: 'blob'});
+  }
+
+  GetOwnerDog(id:string)
+  {
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append("ownerId",id);
+    return this.httpClient.get<Dog>("http://localhost:8080/dogs-of-owner",{params:queryParams});
+  }
+  
+  GetMatchOfOwner(id : string)
+  {
+    let queryParams = new HttpParams();
+      queryParams = queryParams.append("ownerId",id);
+    return this.httpClient.get<Owner[]>("http://localhost:8080/get-matches-of-owner",{params:queryParams});
   }
 
 

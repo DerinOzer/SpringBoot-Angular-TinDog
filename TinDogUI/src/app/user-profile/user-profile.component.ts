@@ -19,7 +19,6 @@ export class UserProfileComponent implements OnInit {
   constructor(private ownerService:OwnerService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    console.log("test");
     this.ownerService.GetOwnerById(sessionStorage.getItem('id') as string ).subscribe(response =>{
       console.log(sessionStorage.getItem('id') as string );
       this.owner = response;

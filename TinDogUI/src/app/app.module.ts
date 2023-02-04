@@ -26,6 +26,7 @@ import { RegisterDogyComponent } from './register-dogy/register-dogy.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { MatchesComponent } from './matches/matches.component';
 
 
 
@@ -43,7 +44,8 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     CreateProfileComponent,
     HomePageComponent,
     RegisterDogyComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    MatchesComponent
 
   ],
   imports: [

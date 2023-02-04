@@ -17,7 +17,7 @@ public class MessageController {
     }
 
     @GetMapping("/latest-message")
-    public Message getEarliestMessage(@RequestParam String senderId, @RequestParam String receiverId){
+    public Message getLatestMessage(@RequestParam String senderId, @RequestParam String receiverId){
         return  messageService.findLatestMessage(senderId,receiverId);
     }
 

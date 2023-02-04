@@ -1,6 +1,7 @@
 package com.polytech.tindog.Match;
 
 import com.polytech.tindog.Dog.Dog;
+import com.polytech.tindog.Dog.DogService;
 import com.polytech.tindog.Owner.Owner;
 import com.polytech.tindog.Owner.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class MatchService {
     @Autowired
     private OwnerService ownerService;
 
+    @Autowired
+    private DogService dogService;
+
     public void createMatch(String judgingId, String judgedId, Boolean liked) throws Exception {
         if(ownerService.ownerExists(UUID.fromString(judgingId)) && ownerService.ownerExists(UUID.fromString(judgedId))){
             if(matchRepository.existsByJudgingIdAndJudgedId(judgingId,judgedId)){
@@ -33,15 +37,15 @@ public class MatchService {
         }
     }
 
-    public List<Owner> getMatchesOfOwner(String ownerId) throws Exception {
+    public List<Dog> getMatchesOfOwner(String ownerId) throws Exception {
         String exception = "No matches for this owner";
         if(matchRepository.existsByJudgingId(ownerId)){
             List<DogMatch> likedMatches = matchRepository.findByJudgingIdAndLiked(ownerId,true).get();
-            List<Owner> matches = new ArrayList<Owner>();
+            List<Dog> matches = new ArrayList<Dog>();
             for(DogMatch match:likedMatches){
                 if(matchRepository.existsByJudgingIdAndLiked(match.getJudgedId(),true)){
                     try {
-                        matches.add(ownerService.getOwnerById(UUID.fromString(match.getJudgedId())));
+                        matches.add(dogService.findDogByOwnerId(match.getJudgedId()));
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

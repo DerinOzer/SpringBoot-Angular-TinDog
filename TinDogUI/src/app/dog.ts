@@ -7,5 +7,5 @@ export class Dog {
     bio!:string;
     gender!:string;
     file!: File;
-    owner!:Owner;
+    ownerId!:string;
 }
