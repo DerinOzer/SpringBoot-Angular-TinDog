@@ -1,95 +1,62 @@
 <html>
-  <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-  </head>
-  <body>
+<head>
 
-	<div class="container" style="margin-left: 40%;">
-    <h1 style=" font-family: 'Brush Script MT', cursive;"> Profile </h1>
-		<div class="row">
-			<div class="col-sm">
-				<div *ngIf=imageCollected>
-					<img src={{profileImage}} alt="Profile Image" width="200px" height="200px" style="border-radius: 50% "><br>
-				</div>
-			</div>
-			<div class="col-sm">
-			<!--	<h3 style=" position: absolute; top:0;right: 0;"><a href="createProfile"><i class="fa fa-edit"></i></a></h3> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</head>
 
-			</div>
-		</div>
+<body>
 
-		<div *ngIf=profileCollected>
-			<table style=" background-color: rgba(245, 245, 220, 0.311); border-radius: 10px; height: 200px; width: 100% ; margin-top:25px ;">
+  <div class="card">
+    <div style="text-align: center; margin: 20px; color: white;">
+      <h3>Profile</h3>
+    </div>
+    <div>
+      <div *ngIf=imageCollected style="display: inline-block;">
+        <img src={{profileImage}} alt="Profile Image"
+        style="width:200px; height:200px; object-fit: cover; border-radius: 50%; display: inline-flex; border: 2px solid white; margin: 10px;"><br>
+      </div>
+      <div *ngIf=profileCollected style="display: inline-block; vertical-align: middle; color: white">
+        <h4 style="padding-top: 5px; margin-bottom: 5px;">{{owner.name}} {{owner.lastname}} </h4>
+        <h6 style=" margin-bottom: 5px;">{{owner.profession}}</h6>
+        <h6 style="    margin-bottom: 5px;">{{owner.birthday| date:'dd-MM-yyyy'}}</h6>
+        <div style="width: 400px; font-style: italic;">
+          <h6 >{{owner.bio}}</h6>
+        </div>
+      </div>
+    </div>
 
-				<tr>
-          <th >Fullname:</th>
-					<th><h3><b>{{owner.name}}</b> </h3></th>
-          <th>  </th>
+  </div>
 
-					<th ><h3><b>{{owner.lastname}}</b> </h3 ></th >
-
-				</tr>
-				<tr>
-          <th >Date:</th>
-					<th>{{owner.birthday| date:'dd-MM-yyyy'}} </th>
-
-				</tr>
-
-				<tr>
-          <th >Your Bio:</th>
-					<th >{{owner.bio}} </th>
-					<td></td>
-				</tr>
-			</table>
-		</div>
-	</div>
   <div class="main_box" style="margin-bottom: 43%;">
     <input type="checkbox" id="check">
-    <div class="btn_one">
-      <label for="check">
-        <i class="fas fa-bars"></i>
-      </label>
-    </div>
     <div class="sidebar_menu">
       <div class="logo">
-        <a href="#">Menu</a>
-          </div>
-        <div class="btn_two">
-          <label for="check">
-            <i class="fas fa-times"></i>
-          </label>
-        </div>
+        <a href="#"><u>Menu</u></a>
+      </div>
+      <div class="btn_two">
+        <label for="check">
+          <i class="fas fa-times"></i>
+        </label>
+      </div>
       <div class="menu">
-        <ul>
+        <ul style="list-style: none;">
           <li><i class="fa fa-edit"></i>
-            <a href="createProfile">Modifier Profile</a>
+            <a href="createProfile">Edit Profile</a>
           </li>
           <li>
             <i class="fa fa-plus"></i>
-            <a href="createProfileDog">Ajouter Un Chien </a>
+            <a href="createProfileDog">Edit Pet Profile</a>
           </li>
           <li>
             <i class="fas fa-dog"></i>
-            <a href="profile">Vos Chiens </a>
+            <a href="javascript:" (click)="sendData()">Pet Profile</a>
           </li>
           <li>
             <i class="fas fa-heart"></i>
-            <a href="matches">Vos Matchs </a>
-          </li>
-      <!--   <li>
-            <i class="fas fa-stream"></i>
-            <a href="#">Overview</a>
-          </li>
-          <li>
-            <i class="fas fa-calendar-week"></i>
-            <a href="#">Events</a>
-          </li>-->
-          <li>
-            <i class="fas fa-question-circle"></i>
-            <a href="#">About</a>
+            <a href="matches">Your Matches</a>
           </li>
         </ul>
       </div>
@@ -99,26 +66,3 @@
 </body>
 
 </html>
-
-<!-- <mat-toolbar>
-      <mat-toolbar-row>
-        <button mat-icon-button>
-          <mat-icon (click)="sidenav.toggle();"> menu</mat-icon>"
-        </button>
-        <h1>hello</h1>
-      </mat-toolbar-row>
-    </mat-toolbar>
-      <mat-sidenav-container>
-        <mat-sidenav #sidenav opened="true" mode="side">
-        <mat-nav-list>
-          <a mat-list-item >Home</a>
-          <a mat-list-item >Help</a>
-          <a mat-list-item >Contact</a>
-          <a mat-list-item >Home</a>
-        </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-container>
-          <div style="height:88px">
-          </div>
-        </mat-sidenav-container>
-      </mat-sidenav-container>-->

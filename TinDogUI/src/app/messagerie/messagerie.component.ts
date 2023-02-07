@@ -38,14 +38,6 @@ export class MessagerieComponent implements OnInit {
 
   ngOnInit(): void {
     this.dogsCollected = false;
-
-    /*this.list=[["lizy","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"],["ouzy","12-06-2019","Je suis miniscule","assets/img/dog.jpg"] ,["pepite","12-06-2019","Je suis miniscule","assets/img/doggy.jpg"],["sirine","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"]];
-    this.name=this.list[0][0];
-      //console.log(typeof this.list[0].at(0));
-      this.date=this.list[0][1];
-      this.bio=this.list[0][2];
-      this.path=this.list[0][3];*/
-
       console.log(sessionStorage.getItem('id'));
       this.dogService.GetDogsToShowToOwner(sessionStorage.getItem('id') as string).subscribe(response =>{
         if(response.length == 0){
@@ -91,7 +83,6 @@ export class MessagerieComponent implements OnInit {
         else{
           this.currentDog = this.dogList[this.i];
           this.dogService.GetDogPicture(this.currentDog.id).subscribe(image =>{
-            console.log("test");
             this.createImageFromBlob(image);
             this.imageCollected = true;
           });
@@ -115,9 +106,8 @@ export class MessagerieComponent implements OnInit {
         else{
           this.currentDog = this.dogList[this.i];
           this.dogService.GetDogPicture(this.currentDog.id).subscribe(image =>{
-            console.log("test");
             this.createImageFromBlob(image);
-            this.imageCollected = false;
+            this.imageCollected = true;
           });
         }
       });

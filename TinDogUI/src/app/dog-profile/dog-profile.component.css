@@ -1,3 +1,33 @@
+body{
+  display: flex;
+  height: calc(100vh - 80px);
+  background-color: rgba(230, 217, 201, 0.404);
+  border-radius: 15px;
+  margin: 10px;
+  align-items: center;
+  background-size: cover;
+}
+
+.owner-card{
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+  background: rgb(241, 209, 209);
+  height: 400px;
+  margin: 30px;
+  margin-left: 40px;
+}
+
+.dog-card{
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+  background: rgb(237 103 111 / 71%);
+  height: 400px;
+  margin: 30px;
+}
+
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 400px;

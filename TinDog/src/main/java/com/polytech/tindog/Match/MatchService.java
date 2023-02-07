@@ -38,12 +38,11 @@ public class MatchService {
     }
 
     public List<Dog> getMatchesOfOwner(String ownerId) throws Exception {
-        String exception = "No matches for this owner";
-        if(matchRepository.existsByJudgingId(ownerId)){
-            List<DogMatch> likedMatches = matchRepository.findByJudgingIdAndLiked(ownerId,true).get();
-            List<Dog> matches = new ArrayList<Dog>();
-            for(DogMatch match:likedMatches){
-                if(matchRepository.existsByJudgingIdAndLiked(match.getJudgedId(),true)){
+        List<Dog> matches = new ArrayList<Dog>();
+        if(matchRepository.existsByJudgingId(ownerId)) {
+            List<DogMatch> likedMatches = matchRepository.findByJudgingIdAndLiked(ownerId, true).get();
+            for (DogMatch match : likedMatches) {
+                if (matchRepository.existsByJudgingIdAndJudgedIdAndLiked(match.getJudgedId(), ownerId, true)) {
                     try {
                         matches.add(dogService.findDogByOwnerId(match.getJudgedId()));
                     } catch (Exception e) {
@@ -51,13 +50,7 @@ public class MatchService {
                     }
                 }
             }
-            if(matches.isEmpty()){
-                throw new Exception(exception);
-            }
-            return matches;
         }
-        else {
-            throw new Exception(exception);
-        }
+        return matches;
     }
 }

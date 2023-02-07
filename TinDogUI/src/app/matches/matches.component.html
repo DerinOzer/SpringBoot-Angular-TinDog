@@ -4,55 +4,47 @@
 
     <div>
         <div id="zone" style="padding-left: 20px;">
-            <div style="flex-grow: 1 ; max-width: 25%; padding-left: 20px;">
-                <table *ngIf=matchesRetrieved>
-                    <tr *ngFor="let dog of matches">
+            <div class="sidebar_menu">
+                <div class="logo">
+                    <a><u>Matches</u></a>
+                </div>
+                <div *ngIf=matchesRetrieved class="menu" style="overflow: scroll;">
+                    <ul *ngFor="let dog of matches" style="list-style: none;">
+                        <li (click)="save(dog)">{{dog.dogname}}</li>
+                    </ul>
+                </div>
 
-                        <!--<th><img src={{owner[1]}} width="50px" height="50spx" style="border-radius: 50% "></th>-->
-                        <th colspan="2" style="color: black;" (click)="save(dog)">{{dog.dogname}}</th>
-                        <th><button class="fas fa-comment-alt"
-                                style="background-color: rgba(245, 245, 220, 0); border-color: rgba(240, 248, 255, 0);"
-                                (click)="save(dog)"></button></th>
-                    </tr>
-
-                </table>
             </div>
-
-            <div *ngIf="matchesRetrieved && conversationOpen" class="chat-global"
-                style="height: 600px; position: absolute; top: 12%; left: 30%; ">
+            <div *ngIf="matchesRetrieved && conversationOpen && imageRetrieved" class="chat-global"
+                style="height: 600px; position: absolute; top: 12%; left: 35%; ">
 
                 <div class="nav-top">
 
                     <div class="utilisateur">
-                        <p style="color:black">{{currentDog.dogname}}</p>
-                        <!--<img src="assets/img/dog.jpg">-->
+                        <img src={{image}} style="width:70px; height:70px; object-fit: cover;border-radius: 100%; margin-left: 20px;
+                        margin-right: 20px;">
+                        <a href="javascript:" (click)="sendData(currentDog)" style="color:black; font-size: large;">{{currentDog.dogname}}</a>
                     </div>
 
 
                 </div>
-                <ng-container *ngIf=conversationRetrieved class="conversation" class="box1" style="overflow:scroll;">
-                    <div *ngFor="let conv of conversation">
-                        <div [ngClass]="conv.sentByCurrentUser == false ? 'talk left' : 'talk right'">
-                            <p>{{conv.messageBody}}</p>
+                <ng-container *ngIf=conversationRetrieved class="conversation" class="box1">
+                    <div style="overflow:scroll; overflow-anchor:revert" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                        <div *ngFor="let conv of conversation">
+                            <div [ngClass]="conv.sentByCurrentUser == false ? 'talk left' : 'talk right'">
+                                <p>{{conv.messageBody}}</p>
+                            </div>
                         </div>
                     </div>
                 </ng-container>
 
                 <form class="chat-form">
-
                     <div class="container-inputs-stuffs">
-
-                        <div class="files-logo-cont">
-                            <img src="assets/img/paperclip.svg">
-                        </div>
-
+                        <div class="files-logo-cont"></div>
                         <div class="group-inp">
-                            <textarea [(ngModel)]="message" type="textarea" id="mesg" name="mesg" placeholder="Enter your message" cols="29"
-                                style="border: 20px"></textarea>
-                            <img src="assets/img/smile.svg">
+                            <textarea [(ngModel)]="message" type="textarea" id="mesg" name="mesg"
+                                placeholder="Enter your message" cols="29" style="border: 20px"></textarea>
                         </div>
-
-
                         <button class="submit-msg-btn" (click)=send()>
                             <img src="assets/img/send.svg">
                         </button>

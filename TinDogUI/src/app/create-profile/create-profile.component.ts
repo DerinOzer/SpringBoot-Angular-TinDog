@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-profile.component.css']
 })
 export class CreateProfileComponent implements OnInit {
-  url='assets/img/picc.png';
+  url='assets/img/Upload-Profile.png';
   name!: string;
   lastname!:string;
   date!:Date;
@@ -20,6 +20,7 @@ export class CreateProfileComponent implements OnInit {
   gender!: string;
   errorMessage!: string;
   id!: any;
+  imageOk:boolean = false;
   constructor(private ownerService: OwnerService,  private router: Router) { }
 
   ngOnInit(): void {
@@ -27,15 +28,14 @@ export class CreateProfileComponent implements OnInit {
 
   onselectFile(e:any)
   {
-
+    this.imageOk = false;
     if (e.target.files){
       this.file = e.target.files[0];
-      //this.formData.set("file", this.file);
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload=(event:any)=>{
         this.url=event.target.result;
-       // console.log(this.url+'1');
+        this.imageOk = true;
       }
     }
   }
@@ -57,18 +57,6 @@ export class CreateProfileComponent implements OnInit {
   );
   }
 
-
-  test()
-  {
-    console.log(this.name);
-    console.log(uuid());
-    console.log("username",this.lastname);
-    console.log("prof",this.profession);
-    console.log("bio",this.bio);
-    console.log("date",this.date);
-    console.log("gender",this.gender);
-    console.log("file",this.formData.get('file'));
-  }
 radioChangeHandler(event:any)
 {
    this.gender=event.target.value;

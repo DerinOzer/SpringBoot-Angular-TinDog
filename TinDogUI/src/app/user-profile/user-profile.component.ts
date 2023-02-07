@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Owner } from '../owner';
 import { OwnerService } from '../owner.service';
 
@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   imageCollected: boolean = false;
   profileImage:any;
 
-  constructor(private ownerService:OwnerService, private sanitizer: DomSanitizer) { }
+  constructor(private ownerService:OwnerService, private router: Router) { }
 
   ngOnInit(): void {
     this.ownerService.GetOwnerById(sessionStorage.getItem('id') as string ).subscribe(response =>{
@@ -24,9 +24,6 @@ export class UserProfileComponent implements OnInit {
       this.owner = response;
       this.profileCollected = true;
       console.log(this.owner);
-
-      //Date to String
-      //Profile picture !
     });
 
     this.ownerService.GetOwnerPicture(sessionStorage.getItem('id') as string ).subscribe(image =>{
@@ -46,5 +43,10 @@ export class UserProfileComponent implements OnInit {
     if (image) {
        reader.readAsDataURL(image);
     }
+  }
+
+  sendData(){
+    let id = sessionStorage.getItem('id') as string;
+    this.router.navigate(['profile'],{state:{data:id}})
   }
 }

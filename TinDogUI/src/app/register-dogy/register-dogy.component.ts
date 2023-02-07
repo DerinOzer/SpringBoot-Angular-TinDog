@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterDogyComponent implements OnInit {
 
-  url='assets/img/dogpicyellow.png';
+  url='assets/img/Upload-Dog.png';
   ownerId: any;
   file: any;
   bio: any;
@@ -21,6 +21,7 @@ export class RegisterDogyComponent implements OnInit {
   date:any;
   gender:any;
   errorMessage:any;
+  imageOk:boolean =false;
 
   formData = new FormData();
   constructor( private dogService: DogService, private ownerService: OwnerService, private router: Router) {
@@ -32,6 +33,7 @@ export class RegisterDogyComponent implements OnInit {
 
   onselectFile(e:any)
   {
+    this.imageOk =false;
     if (e.target.files){
      this.file=e.target.files[0];
      this.formData.set("file", this.file);
@@ -39,17 +41,9 @@ export class RegisterDogyComponent implements OnInit {
       reader.readAsDataURL(e.target.files[0]);
       reader.onload=(event:any)=>{
         this.url=event.target.result;
-        console.log(this.url+'1');
+        this.imageOk = true;
       }
     }
-  }
-  test()
-  {
-    console.log("fullname",this.fullname);
-    console.log("id",uuid());
-    console.log("bio",this.bio);
-    console.log("date",this.date);
-    console.log("file",this.formData.get('file'));
   }
 
   createProfile()

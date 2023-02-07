@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Dog } from '../dog';
 import { DogService } from '../dog.service';
 import { MatchService } from '../match.service';
@@ -13,17 +14,21 @@ import { OwnerService } from '../owner.service';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent implements OnInit {
-  matches!:Dog[]
-  images!:any[]
-  conversation!: MessageDto[]
+  chatWindow!:any;
+  matches!:Dog[];
+  image!:any;
+  conversation!: MessageDto[];
   matchesRetrieved:boolean = false;
   conversationOpen:boolean = false;
   conversationRetrieved:boolean = true;
+  imageRetrieved:boolean = false;
   currentDog!:Dog;
   senderId!:string;
   message!:string;
 
-  constructor(private matchService:MatchService, private dogService:DogService, private messageService:MessageService) { }
+  
+  constructor(private matchService:MatchService, private dogService:DogService, private messageService:MessageService,
+    private router:Router) { }
 
 
   ngOnInit(): void {
@@ -31,26 +36,18 @@ export class MatchesComponent implements OnInit {
     this.matchService.GetMatchesOfOwner(sessionStorage.getItem('id') as string).subscribe(listOfMatch => {
       this.matches = listOfMatch;
       this.matchesRetrieved = true;
+      this.save(this.matches[0]);
     });
   }
 
-  /*getImages(list:any[]){
-    list.forEach(dog => {
-      this.dogService.GetDogPicture(dog.id).subscribe(image => {
-        this.createImageFromBlob(image);
-        this.transferOkay = true;
-      });
-    });
-
-    if(list.length == this.images.length)
-      return true
-    
-  }*/
+  sendData(dog:Dog){
+    this.router.navigate(['profile'],{state:{data:dog.ownerId}})
+  }
 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-       this.images.push(reader.result);
+       this.image = reader.result;
     }, false);
  
     if (image) {
@@ -60,6 +57,7 @@ export class MatchesComponent implements OnInit {
 
   save(dog: Dog)
   {
+    this.imageRetrieved = false;
     this.conversationRetrieved = false;
     this.conversationOpen = true;
     this.currentDog = dog;
@@ -67,6 +65,10 @@ export class MatchesComponent implements OnInit {
       this.conversation = conv;
       console.log(this.conversation);
       this.conversationRetrieved = true;
+      this.dogService.GetDogPicture(this.currentDog.id).subscribe(image => {
+        this.createImageFromBlob(image);
+        this.imageRetrieved = true;
+      })
     })
   }
 

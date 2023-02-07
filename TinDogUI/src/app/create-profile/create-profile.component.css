@@ -7,37 +7,38 @@
 
 body{
   display: flex;
-  height: 100%;
-
+  height: calc(100vh - 80px);
+  background-color: rgba(230, 217, 201, 0.404);
+  border-radius: 15px;
+  margin: 10px;
   align-items: center;
-  /*background: url(/assets/img/dog.jpg);*/
   background-size: cover;
 }
 
 .container{
+  position: absolute;
+  left: 25%;
   width: 100%;
   max-width: 650px;
-  background: rgba(0, 0, 0, 0.5);
+  /*background: rgba(0, 0, 0, 0.5);*/
   padding: 28px;
   margin: 0 28px;
-  border-radius: 10px;
-  box-shadow: inset -2px 2px 2px white;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+  background: rgb(241, 209, 209);
 }
 
 .form-title{
   font-size: 26px;
-  font-weight: 600;
   text-align: center;
   padding-bottom: 6px;
-  color: white;
-  text-shadow: 2px 2px 2px black;
-  border-bottom: solid 1px white;
+  color: grey;
 }
 
 .main-user-info{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 20px 0;
 }
 
@@ -54,7 +55,7 @@ body{
 
 .user-input-box label{
   width: 95%;
-  color: white;
+  color: grey;
   font-size: 20px;
   font-weight: 400;
   margin: 5px 0;
@@ -73,7 +74,6 @@ body{
   color:white;
   font-size: 24px;
   font-weight: 600;
-  border-bottom: 1px solid white;
 }
 
 .gender-category{
@@ -91,10 +91,6 @@ body{
   cursor: pointer;
 }
 
-.form-submit-btn{
-  margin-top: 40px;
-}
-
 .form-submit-btn input{
   display: block;
   width: 100%;
@@ -103,12 +99,12 @@ body{
   padding: 10px;
   border:none;
   border-radius: 3px;
-  color: rgb(209, 209, 209);
-  background: rgba(63, 114, 76, 0.7);
+  color:white;
+  background:  rgba(237, 103, 111, 255);
 }
 
 .form-submit-btn input:hover{
-  background: rgba(56, 204, 93, 0.7);
+  background: rgb(243, 177, 177);
   color: rgb(255, 255, 255);
 }
 
@@ -168,7 +164,7 @@ body{
 }
 
 .profile-picture .drag-over .infotext {
-  color: white;
+  color: grey;
   border: dashed 5px white;
 }
 
