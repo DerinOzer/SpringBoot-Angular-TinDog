@@ -31,9 +31,6 @@ export class MessagerieComponent implements OnInit {
   imageCollected:boolean = false;
   noMoreDogsToShow:boolean = false;
 
-
-
-  //list=[["lizy","12-06-2019","Je suis miniscule","assets/img/dogggy.jpg"],["ouzy","12-06-2019","Je suis miniscule","assets/img/dog.jpg"] ,["pepite","12-06-2019","Je suis miniscule","assets/img/doggy.jpg"]];
   constructor(private dogService:DogService, private matchService:MatchService) { }
 
   ngOnInit(): void {
@@ -96,7 +93,7 @@ export class MessagerieComponent implements OnInit {
   {
     this.imageCollected = false;
     this.dogService.GetOwnerIdByDogId(this.currentDog.id).subscribe(ownerId =>{
-      this.matchService.CreateMatch(sessionStorage.getItem('id') as string, ownerId, true).subscribe(() => {
+      this.matchService.CreateMatch(sessionStorage.getItem('id') as string, ownerId, false).subscribe(() => {
         this.i = this.i + 1;
 
         if(typeof this.dogList[this.i] === 'undefined'){
